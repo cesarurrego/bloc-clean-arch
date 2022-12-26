@@ -1,9 +1,9 @@
-import 'package:bloc_clean_arch/pokemon/ui/widgets/loading_widget.dart';
-import 'package:bloc_clean_arch/pokemon/ui/widgets/pokemon_detail_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc_clean_arch/pokemon/bloc/pokemon_cubit.dart';
 import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
+import 'package:bloc_clean_arch/pokemon/ui/widgets/pokemon_detail_wd.dart';
+import 'package:design/widgets/loading/circular_loading_wd.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PokemonScreen extends StatelessWidget {
   const PokemonScreen({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _PokemonScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PokemonCubit, PokemonState>(
       builder: (context, state) {
-        if (state.isLoading) return const PokemonLoading();
+        if (state.isLoading) return const PokeBallLoading();
         return _PokemonList(list: state.pokemonList);
       },
     );

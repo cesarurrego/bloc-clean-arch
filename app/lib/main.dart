@@ -1,12 +1,13 @@
 import 'package:bloc_clean_arch/di/bloc_locator.dart';
 import 'package:bloc_clean_arch/di/service_locator.dart';
-import 'package:bloc_clean_arch/pokemon/ui/screens/pokemon_screen.dart';
+import 'package:bloc_clean_arch/pokemon/ui/screens/pokemon_sc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   final serviceLocator = ServiceLocator();
   await serviceLocator.init();
+
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }

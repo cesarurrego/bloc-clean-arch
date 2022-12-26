@@ -1,0 +1,11 @@
+name: my_project
+
+packages:
+  - app/*
+  - core/*
+  - data/*
+  - domain/*
+  - design/*
+
+scripts:
+  postclean: rm -rf app/build
