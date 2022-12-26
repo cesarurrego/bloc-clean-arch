@@ -1,5 +1,5 @@
-import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
 import 'package:bloc_clean_arch/utils/string_extension.dart';
+import 'package:data/models/pokemon_detail_model.dart';
 import 'package:flutter/material.dart';
 
 class PokemonStatsWidget extends StatelessWidget {

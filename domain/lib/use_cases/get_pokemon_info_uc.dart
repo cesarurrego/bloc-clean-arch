@@ -1,15 +1,16 @@
-import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
-import 'package:bloc_clean_arch/pokemon/models/pokemon_model.dart';
-import 'package:bloc_clean_arch/pokemon/repository/pokemon_repository.dart';
 
-abstract class PokemonDetailListUseCase {
+import 'package:data/models/pokemon_detail_model.dart';
+import 'package:data/models/pokemon_model.dart';
+import 'package:data/repositories/pokemon/pokemon_repository.dart';
+
+abstract class GetPokemonInfoUseCase {
   Future<List<PokemonDetailModel>> call(List<PokemonModel> pokemonList);
 }
 
-class PokemonDetailListUseCaseImpl implements PokemonDetailListUseCase {
+class GetPokemonInfoUseCaseImpl implements GetPokemonInfoUseCase {
   final PokemonRepository _pokemonRepository;
 
-  PokemonDetailListUseCaseImpl(this._pokemonRepository);
+  GetPokemonInfoUseCaseImpl(this._pokemonRepository);
 
   @override
   Future<List<PokemonDetailModel>> call(List<PokemonModel> pokemonList) async {

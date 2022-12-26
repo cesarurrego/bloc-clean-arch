@@ -14,6 +14,7 @@ abstract class PokemonState extends Equatable {
     this.listCount = 10,
   });
 
+  @override
   List<Object?> get props => [
         pokemonList,
         isLoading,
@@ -22,16 +23,11 @@ abstract class PokemonState extends Equatable {
 }
 
 class PokemonInitial extends PokemonState {
-  final List<PokemonDetailModel> pokemonList;
-  final bool isLoading;
-  final bool isLoadingMore;
-  final int listCount;
-
   const PokemonInitial({
-    this.pokemonList = const [],
-    this.isLoading = false,
-    this.isLoadingMore = false,
-    this.listCount = 10,
+    super.pokemonList,
+    super.isLoading,
+    super.isLoadingMore,
+    super.listCount,
   });
 
   PokemonInitial copyWith({

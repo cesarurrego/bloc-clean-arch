@@ -1,12 +1,21 @@
+import 'package:bloc_clean_arch/di/service_locator.dart';
 import 'package:bloc_clean_arch/pokemon/bloc/pokemon_cubit.dart';
-import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
 import 'package:bloc_clean_arch/pokemon/ui/widgets/pokemon_detail_wd.dart';
+import 'package:data/models/pokemon_detail_model.dart';
 import 'package:design/widgets/loading/circular_loading_wd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PokemonScreen extends StatelessWidget {
+class PokemonScreen extends StatefulWidget {
   const PokemonScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PokemonScreen> createState() => _PokemonScreenState();
+}
+
+class _PokemonScreenState extends State<PokemonScreen> {
+
+  final PokemonCubit _pokemonCubit = ServiceLocator.get<PokemonCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,10 @@ class PokemonScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
-      body: const _PokemonScreenContent(),
+      body: BlocProvider(
+        create: (_) => _pokemonCubit,
+        child: const _PokemonScreenContent(),
+      ),
     );
   }
 }

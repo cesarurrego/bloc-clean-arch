@@ -16,18 +16,15 @@ class PokemonImageWidget extends StatelessWidget {
     return Hero(
       key: UniqueKey(),
       tag: imageUrl,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 500),
-        child: Image.network(
-          imageUrl,
-          scale: scale,
-          loadingBuilder: (_, Widget child, ImageChunkEvent? loadingProgress) {
-            if (loadingProgress != null) {
-              return const PokeBallLoading(scale: 18.0);
-            }
-            return child;
-          },
-        ),
+      child: Image.network(
+        imageUrl,
+        scale: scale,
+        loadingBuilder: (_, Widget child, ImageChunkEvent? loadingProgress) {
+          if (loadingProgress != null) {
+            return const PokeBallLoading(scale: 18.0);
+          }
+          return child;
+        },
       ),
     );
   }

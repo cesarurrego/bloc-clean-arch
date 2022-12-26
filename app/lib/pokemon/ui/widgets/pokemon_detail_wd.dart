@@ -1,9 +1,8 @@
-import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
 import 'package:bloc_clean_arch/pokemon/ui/screens/pokemon_detaill_sc.dart';
 import 'package:bloc_clean_arch/pokemon/ui/widgets/pokemon_image_wd.dart';
 import 'package:bloc_clean_arch/pokemon/ui/widgets/pokemon_title_wd.dart';
 import 'package:bloc_clean_arch/utils/string_extension.dart';
-import 'package:design/widgets/loading/circular_loading_wd.dart';
+import 'package:data/models/pokemon_detail_model.dart';
 import 'package:flutter/material.dart';
 
 class PokemonDetailWidget extends StatelessWidget {

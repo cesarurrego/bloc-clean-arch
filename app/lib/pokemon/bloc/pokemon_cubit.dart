@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:data/models/pokemon_detail_model.dart';
+import 'package:domain/use_cases/get_pokemon_uc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:bloc_clean_arch/pokemon/models/pokemon_detail_model.dart';
-import 'package:bloc_clean_arch/pokemon/use_cases/pokemon_use_case.dart';
 
 part 'pokemon_state.dart';
 
 class PokemonCubit extends Cubit<PokemonState> {
-  final PokemonUseCase _pokemonUseCase;
+  final GetPokemonUseCase _pokemonUseCase;
 
   PokemonCubit(this._pokemonUseCase) : super(const PokemonInitial()) {
     fetchPokemons();
