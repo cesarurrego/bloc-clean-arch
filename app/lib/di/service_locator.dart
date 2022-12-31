@@ -2,8 +2,6 @@ import 'package:bloc_clean_arch/pokemon/bloc/pokemon_cubit.dart';
 import 'package:core/api/api.abs.dart';
 import 'package:core/api/api.dart';
 import 'package:data/repositories/pokemon/pokemon_repository.dart';
-import 'package:domain/use_cases/get_pokemon_info_uc.dart';
-import 'package:domain/use_cases/get_pokemon_list_uc.dart';
 import 'package:domain/use_cases/get_pokemon_uc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -31,9 +29,7 @@ class ServiceLocator {
   }
 
   void _initUseCases() {
-    _getIt.registerFactory<GetPokemonListUseCase>(() => GetPokemonListUseCaseImpl(_getIt.get()));
-    _getIt.registerFactory<GetPokemonInfoUseCase>(() => GetPokemonInfoUseCaseImpl(_getIt.get()));
-    _getIt.registerFactory<GetPokemonUseCase>(() => GetPokemonUseCaseImpl(_getIt.get(), _getIt.get()));
+    _getIt.registerFactory<GetPokemonUseCase>(() => GetPokemonUseCaseImpl(_getIt.get()));
   }
 
   void _initBlocs(){

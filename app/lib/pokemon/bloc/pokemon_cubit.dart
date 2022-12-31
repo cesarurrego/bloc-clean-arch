@@ -15,20 +15,13 @@ class PokemonCubit extends Cubit<PokemonState> {
 
   Future<void> fetchPokemons() async {
     final currentState = state as PokemonInitial;
-    emit(currentState.copyWith(isLoading: true));
-    final pokemonList = await _pokemonUseCase.call(10);
+    if (state.pokemonList.isEmpty) {
+      emit(currentState.copyWith(isLoading: true));
+    }
+    final pokemonList = await _pokemonUseCase.call();
     emit(currentState.copyWith(
       pokemonList: pokemonList,
       isLoading: false,
     ));
-  }
-
-  Future<void> loadMorePokemons() async {
-    print('cosito de carga');
-    final currentState = state as PokemonInitial;
-    emit(currentState.copyWith(isLoadingMore: true));
-    await Future.delayed(const Duration(milliseconds: 5000));
-    emit(currentState.copyWith(isLoadingMore: false));
-    print('termina cosito de carga');
   }
 }

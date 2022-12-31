@@ -1,21 +1,18 @@
 import 'package:data/models/pokemon_detail_model.dart';
-import 'package:domain/use_cases/get_pokemon_info_uc.dart';
-import 'package:domain/use_cases/get_pokemon_list_uc.dart';
+import 'package:data/repositories/pokemon/pokemon_repository.dart';
 
 abstract class GetPokemonUseCase {
-  Future<List<PokemonDetailModel>> call(int itemCount);
+  Future<List<PokemonDetailModel>> call();
 }
 
 class GetPokemonUseCaseImpl implements GetPokemonUseCase {
-  final GetPokemonListUseCase _pokemonListUseCase;
-  final GetPokemonInfoUseCase _pokemonDetailListUseCase;
+  final PokemonRepository _pokemonRepository;
 
-  GetPokemonUseCaseImpl(this._pokemonListUseCase, this._pokemonDetailListUseCase);
+  GetPokemonUseCaseImpl(this._pokemonRepository);
 
   @override
-  Future<List<PokemonDetailModel>> call(int itemCount) async {
-    final pokemonList = await _pokemonListUseCase.call(itemCount);
-    final pokemonDetailList = await _pokemonDetailListUseCase.call(pokemonList);
-    return pokemonDetailList;
+  Future<List<PokemonDetailModel>> call() async {
+    await _pokemonRepository.fetchPokemons();
+    return _pokemonRepository.listPokemonStream.take(1).last;
   }
 }
