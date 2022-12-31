@@ -1,14 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:design/widgets/loading/circular_loading_wd.dart';
 import 'package:flutter/material.dart';
 
 class PokemonImageWidget extends StatelessWidget {
   final String imageUrl;
-  final double scale;
+  final double width;
 
   const PokemonImageWidget({
     Key? key,
     required this.imageUrl,
-    this.scale = 6.0,
+    this.width = 80.0,
   }) : super(key: key);
 
   @override
@@ -16,15 +17,12 @@ class PokemonImageWidget extends StatelessWidget {
     return Hero(
       key: UniqueKey(),
       tag: imageUrl,
-      child: Image.network(
-        imageUrl,
-        scale: scale,
-        loadingBuilder: (_, Widget child, ImageChunkEvent? loadingProgress) {
-          if (loadingProgress != null) {
-            return const PokeBallLoading(scale: 18.0);
-          }
-          return child;
+      child: CachedNetworkImage(
+        progressIndicatorBuilder: (_, __, ___) {
+          return const PokeBallLoading(scale: 18.0);
         },
+        imageUrl: imageUrl,
+        width: width,
       ),
     );
   }

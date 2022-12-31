@@ -34,7 +34,7 @@ class PokemonDetail extends StatelessWidget {
             children: [
               PokemonImageWidget(
                 imageUrl: image,
-                scale: 2.0,
+                width: 200.0,
               ),
               PokemonNameWidget(
                 name: pokemon.name,
