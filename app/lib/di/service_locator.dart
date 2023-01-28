@@ -3,14 +3,14 @@ import 'package:core/api/api.abs.dart';
 import 'package:core/api/api.dart';
 import 'package:data/repositories/pokemon/pokemon_repository.dart';
 import 'package:domain/use_cases/get_pokemon_uc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:injector/injector.dart';
 
 class ServiceLocator {
 
-  static final _getIt = GetIt.instance;
+  static final injector = Injector.appInstance;
 
   static T get<T extends Object>() {
-    return _getIt.get();
+    return injector.get();
   }
 
   Future<void> init() async {
@@ -21,19 +21,28 @@ class ServiceLocator {
   }
 
   void _initServices(){
-    _getIt.registerLazySingleton<Api>(() => ApiImpl());
+    injector.registerSingleton<Api>(() => ApiImpl());
   }
 
   void _initRepositories() {
-    _getIt.registerLazySingleton<PokemonRepository>(() => PokemonRepository(_getIt.get()));
+    injector.registerSingleton<PokemonRepository>(() => PokemonRepository(injector.get()));
   }
 
   void _initUseCases() {
-    _getIt.registerFactory<GetPokemonUseCase>(() => GetPokemonUseCaseImpl(_getIt.get()));
+    injector.register<GetPokemonUseCase>(CustomFactory(() => GetPokemonUseCaseImpl(injector.get())));
   }
 
   void _initBlocs(){
-    _getIt.registerLazySingleton<PokemonCubit>(() => PokemonCubit(_getIt.get()));
+    injector.registerSingleton<PokemonCubit>(() => PokemonCubit(injector.get()));
+  }
+}
 
+class CustomFactory<T> extends Factory<T> {
+  CustomFactory(Builder<T> builder) : super(builder);
+
+  @override
+  T get instance {
+    //Use this.builder to create your instance with custom logic.
+    return builder();
   }
 }
