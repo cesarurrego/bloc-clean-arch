@@ -347,13 +347,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-  injector:
-    dependency: "direct main"
-    description:
-      name: injector
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   io:
     dependency: transitive
     description:
@@ -375,6 +368,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
+  kiwi:
+    dependency: "direct main"
+    description:
+      name: kiwi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.3"
   lints:
     dependency: transitive
     description:
